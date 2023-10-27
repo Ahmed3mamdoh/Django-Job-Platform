@@ -1,10 +1,11 @@
+{% load static %}
 {% extends "base.html" %}
 {% block body %}
         <main>
 
             <!-- Hero Area Start-->
             <div class="slider-area ">
-                <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/hero/about.jpg">
+                <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{% static 'assets/img/hero/about.jpg' %}">
                     <div class="container">
                         <div class="row">
                             <div class="col-xl-12">
@@ -204,7 +205,7 @@
                                                     <a href="#"><img src="{{object.company.logo.url}}" style="width:85px;height:85px;" alt=""></a>
                                                 </div>
                                                 <div class="job-tittle job-tittle2">
-                                                    <a href="#">
+                                                    <a href="/jobs/{{object.slug}}">
                                                         <h4>{{object}}</h4>
                                                     </a>
                                                     <ul>
