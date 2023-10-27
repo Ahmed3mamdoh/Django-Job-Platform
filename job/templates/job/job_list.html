@@ -1,5 +1,6 @@
-{% load static %}
 {% extends "base.html" %}
+{% load static %}
+{% load humanize %}
 {% block body %}
         <main>
 
@@ -217,7 +218,7 @@
                                             </div>
                                             <div class="items-link items-link2 f-right">
                                                 <a href="job_details.html">{{object.job_type}}</a>
-                                                <span>7 hours ago</span>
+                                                <span>{{object.created_at|naturaltime}}</span>
                                             </div>
                                         </div>  
                                     {% endfor %}
