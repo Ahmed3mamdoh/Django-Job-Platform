@@ -38,8 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    
 
     # 3rd apps
+    'rest_framework',
+
 
     # my apps
     'job',
