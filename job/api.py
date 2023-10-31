@@ -1,4 +1,5 @@
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import filters
 from rest_framework import generics
 from .serializers import JobSerializers
@@ -29,6 +30,8 @@ class JobListAPI(generics.ListCreateAPIView):
     filterset_fields = ['title', 'vacancy','job_type']
     search_fields = ['title', 'description']
     ordering_fields = ['salary_start','salary_end','experience']
+    permission_classes = [IsAuthenticated]
+    
 
 class JobDetailAPI(generics.RetrieveUpdateDestroyAPIView):
     queryset = Job.objects.all()
