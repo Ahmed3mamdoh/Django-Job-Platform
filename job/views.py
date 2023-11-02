@@ -39,6 +39,7 @@ class JobApply(CreateView):
         job = get_object_or_404(Job, slug=slug)
         job_apply= form.save(commit=False)
         job_apply.job = job
+        
         job_apply.save()
 
         return super().form_valid(form)
