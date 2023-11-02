@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render , get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import  CreateView
+from .forms import JobApplyForm
 from .models import Job , JobApply
 # Create your views here.
 
@@ -31,7 +32,7 @@ def job_details(request , slug):
 class JobApply(CreateView):
     model = JobApply
     success_url = '/jobs/'
-    fields = ['username','email','linkedin_profile','github_profile','cv','cover_letter']
+    form_class = JobApplyForm
     
 
     def form_valid(self,form):
@@ -39,7 +40,5 @@ class JobApply(CreateView):
         job = get_object_or_404(Job, slug=slug)
         job_apply= form.save(commit=False)
         job_apply.job = job
-        
         job_apply.save()
-
         return super().form_valid(form)
