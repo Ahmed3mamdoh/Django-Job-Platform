@@ -53,6 +53,21 @@ class Company(models.Model):
     subtitle = models.TextField(max_length=100)
     website = models.URLField()
     email = models.EmailField()
+    
 
     def __str__(self):
         return self.name
+    
+class JobApply(models.Model):
+    job = models.ForeignKey('Job' , on_delete= models.CASCADE, related_name='apply_job')
+    username = models.CharField(max_length=120)
+    email = models.EmailField()
+    cover_letter = models.TextField(max_length=200 , help_text= 'add your notes here')
+    cv = models.FileField(upload_to='CVS', help_text= 'please upload your cv')
+    linkedin_profile = models.URLField(null=True,blank=True, help_text= 'please enter your LinkedIn profile url' )
+    github_profile = models.URLField(null=True,blank=True, help_text= 'please enter your github profile url')
+    created_at = models.DateTimeField(default=timezone.now)
+
+
+    def __str__(self):
+        return self.username
