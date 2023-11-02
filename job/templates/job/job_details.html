@@ -4,6 +4,12 @@
 
 {% block body %}
 
+<style>
+    li{
+        list-style:square !important;
+    }
+</style>
+
         <main>
 
 
@@ -54,7 +60,7 @@
                                     <div class="small-section-tittle">
                                         <h4>Job Description</h4>
                                     </div>
-                                    <p>{{job.description}}</p>
+                                    <p>{{job.description|safe}}</p>
                                 </div>
                             </div>
 

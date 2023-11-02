@@ -11,3 +11,4 @@ def job_list(request):
 def job_details(request , slug):
     job = Job.objects.get(slug=slug)
     return render (request, 'job/job_details.html',{'job':job})
+
