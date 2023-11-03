@@ -1,5 +1,3 @@
-from django.forms.models import BaseModelForm
-from django.http import HttpResponse
 from django.shortcuts import render , get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import  CreateView
@@ -42,3 +40,17 @@ class JobApply(CreateView):
         job_apply.job = job
         job_apply.save()
         return super().form_valid(form)
+
+
+def about_view(request):
+    return render(request, 'about.html')
+
+
+
+def contact_view(request):
+    return render(request, 'contact.html')
+
+class AddJob(CreateView):
+    model = Job
+    fields = ['title','location','company','salary_start','salary_end','description','vacancy','job_type','experience','category']
+    success_url = '/jobs/'
