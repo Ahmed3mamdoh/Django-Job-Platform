@@ -1,7 +1,7 @@
 from django.shortcuts import render , get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import  CreateView
-from .forms import JobApplyForm
+from .forms import JobApplyForm , JobForm
 from .models import Job , JobApply
 # Create your views here.
 
@@ -52,5 +52,6 @@ def contact_view(request):
 
 class AddJob(CreateView):
     model = Job
-    fields = ['title','location','company','salary_start','salary_end','description','vacancy','job_type','experience','category']
+    #fields = ['title','location','company','salary_start','salary_end','description','vacancy','job_type','experience','category']
+    form_class = JobForm
     success_url = '/jobs/'
