@@ -3,6 +3,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import  CreateView
 from django.db.models import Q , F        #Q: to use the OR condition in filter conditions ^ F: i use it so i can do comparisions between 2 columns
 from django.db.models.aggregates import Count , Sum , Min , Max , Avg  
+from django.views.decorators.cache import cache_page
 from .forms import JobApplyForm , JobForm
 from .models import Job , JobApply
 # Create your views here.
@@ -43,7 +44,7 @@ class JobApply(CreateView):
         job_apply.save()
         return super().form_valid(form)
 
-
+@cache_page(60 * 1)
 def mydebug(request):
                                                             # FILTER OBJECTS:     !!
     # data = job.objects.filter(experience__gt=5)            * filter jobs where experience > 5 *
@@ -79,7 +80,7 @@ def mydebug(request):
     # data = Job.objects.aggregate(Sum('experience')) *will display the sum result of all job experiences
     # data = Job.objects.aggregate(my_sum=Sum('experience') , min_salary_end=Min('salary_end')) *will display the sum result of all job experiences and minimum salary end value
     # data = Job.objects.annotate(salary_with_tax = F('salary_start')*1.15)  *will be displayed only in the sql debug page sel action as a temporary column
-    data = Job.objects.all()
+    data = Job.objects.only('id','title')
     return render(request, 'job/debug.html', {'data':data})
 
 def about_view(request):
